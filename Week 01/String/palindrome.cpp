@@ -1,27 +1,42 @@
 #include<iostream>
 using namespace std;
 
-bool isPalindrome(string str)
-{
-    string compare="";
-    for(int i=str.length() -1 ; i>=0 ; i--)
-    {
-        compare += str[i];
-    }
-       
-    if(compare == str)
-    {
-        return true;
-    }
-    else
-    {
+    bool isAlphaNum(char ch){
+        if((ch >= '0' && ch <= '9') || (tolower(ch) >= 'a' && tolower(ch) <= 'z')){
+            return true;
+        }
         return false;
     }
-}
+
+    bool isPalindrome(string s) {
+        int start = 0;
+        int end = s.length() -1;
+
+        while(start < end)
+        {
+            if(!isAlphaNum(s[start])){
+                start++;
+                continue;
+            }
+            if(!isAlphaNum(s[end])){
+                end--;
+                continue;
+            }
+
+            if(tolower(s[start]) != tolower(s[end])){
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
+    }
+
+
 
 int main()
 {
-    string pal = "racecar";
+    string pal = "A man, a plan, a canal: Panama";
     cout << isPalindrome(pal);
 
 
